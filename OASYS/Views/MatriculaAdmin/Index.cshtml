@@ -1,0 +1,132 @@
+﻿@model IEnumerable<OASYS.Models.GestiondeCursos>
+@using OASYS.Controllers
+@{
+    MatriculaAdminController cursos = new MatriculaAdminController();
+    ViewBag.Title = "Matricula";
+    int ID_USER = Convert.ToInt32(@ViewData["id"]);
+    ViewBag.Title = "Index";
+    int id_matricula = cursos.Control_Id(ID_USER);
+
+    Interfaz f = new Interfaz();
+    string laya = f.ROL((int)Session["Rol"]);
+    Layout = laya;
+}
+
+<h2>Matricular Cursos</h2>
+
+<p>
+    <h5>Matrícula</h5>
+</p>
+<div class="table-responsive table-striped">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Curso
+                </th>
+
+                <th>
+                    Nivel
+                </th>
+
+
+                <th>
+                    Precio
+                </th>
+
+
+                <th>
+                    Aula
+                </th>
+
+                <th>
+                    Horario
+                </th>
+                <th>
+                    Profesor
+                </th>
+                <th>
+                    Estado
+                </th>
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Curso.nombre)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Curso.Nivel.nivel1)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Curso.precio)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aula.nombre)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Horario.dia)
+                        @Html.DisplayFor(modelItem => item.Horario.hora)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Persona.nombre)
+                        @Html.DisplayFor(modelItem => item.Persona.apellido1)
+                        @Html.DisplayFor(modelItem => item.Persona.apellido2)
+
+                    </td>
+                    <td>
+                        @{
+
+
+
+                            MatriculaController a = new MatriculaController();
+
+                            bool estado = a.Matriculado(id_matricula, item.IDGestiondeCursos);
+
+                        }
+
+                        @if (estado)
+                        {
+
+                            <div class="btn-group">
+                                <button class="btn" type="submit">
+                                    <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-delete-bin-48.png"> @Html.ActionLink("Quitar", "Delete", new { id_curso = item.IDGestiondeCursos, id_matricula = id_matricula, ID_USER = ID_USER })
+                                </button>
+                            </div>
+
+
+                        }
+                        else
+                        {
+                            <div class="btn-group">
+                                <button class="btn" type="submit">
+                                    <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-add-48.png"> @Html.ActionLink("Matricular", "Create", new { id_curso = item.IDGestiondeCursos, id_matricula = id_matricula, ID_USER = ID_USER })
+                                </button>
+                            </div>
+                           
+                        }
+
+
+                    </td>
+                </tr>
+
+            }
+        </thead>
+    </table>
+</div>
+
+<div class="row mb-3">
+    <div class="col-12">
+        <a class="nav-link" href="@Url.Action("Create", "Aulas")">
+            <img src="~/Assets/Icons/icons8-approval-48.png" />@Html.ActionLink("Confimar Matricula", "Index", "ConfirmaMatricula", new { id_matricula = id_matricula, id_user = ID_USER }, null)
+
+        </a>
+    </div>
+</div>

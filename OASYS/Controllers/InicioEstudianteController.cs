@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using OASYS.Models;
+
+namespace OASYS.Controllers
+{
+    public class InicioEstudianteController : Controller
+    {
+        BD_OASYS db = new BD_OASYS();
+        public ActionResult Index()
+        {
+            ViewBag.TipoUsuario = "ESTUD";
+            return View(db.Noticias.OrderByDescending(x => x.fechaModifica).ToList());
+        }
+    }
+}

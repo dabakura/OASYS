@@ -1,0 +1,139 @@
+﻿@model OASYS.Models.Facturacion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Facturacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.claveNumerica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.claveNumerica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaEmision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaEmision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subtotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subtotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidadCursos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidadCursos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegistro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maestro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maestro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Indicador_Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Indicador_Activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona.cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona.cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Matricula.IDmatricula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Matricula.IDmatricula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPOPAGO.TIPODEPAGO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPOPAGO.TIPODEPAGO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDfactura }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,32 @@
+﻿@model OASYS.Models.Facturacion
+
+@{
+    ViewBag.Title = "NOTA DE CREDITO";
+    Interfaz inter = new Interfaz();
+    string laya = inter.ROL((int)Session["Rol"]);
+    Layout = laya;
+}
+
+<h2>Crear Nota de Credito</h2>
+
+<h3>Esta Seguro que desea anular esta Factura?</h3>
+<div>
+    <h4>Facturacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDfactura)
+        </dt>
+
+  
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Cambiar" class="btn btn-default" /> |
+             @Html.ActionLink("Back to List", "Volver")
+        </div>
+    }
+</div>

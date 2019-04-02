@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OASYS", "OASYS\OASYS.csproj", "{AC794723-D25E-421D-B515-D5057525D2FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC794723-D25E-421D-B515-D5057525D2FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC794723-D25E-421D-B515-D5057525D2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC794723-D25E-421D-B515-D5057525D2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC794723-D25E-421D-B515-D5057525D2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {68A54710-8460-4055-BB3A-0C50B87914B9}
+	EndGlobalSection
+EndGlobal

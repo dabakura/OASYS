@@ -1,0 +1,104 @@
+﻿@model OASYS.Models.Persona
+
+@{
+    ViewBag.Title = "Crear Persona";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>CrearPersona</h2>
+<div class="row justify-content-center">
+    <div class="col">
+        <div class="form-horizontal">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2">Identificación</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.cedula, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.cedula, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Tipo Identificación</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("tipo_identificacion", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.tipo_identificacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Nombre</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Primer Apellido</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.apellido1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.apellido1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Segundo Apellido</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.apellido2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.apellido2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Dirección</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Correo</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Fecha de Nacimiento</label>
+                    <div class="input-group input-group-alternative col-md-10">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                        @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control dp-app", @readonly = "True", @style = "background-color: white" } })
+                        @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Rol</label>
+                    <div class="col-md-10">
+                        <select class="form-control" name="idRol">
+                            <option value="1">Administrador</option>
+                            <option value="2">Colaborador</option>
+                            <option value="3">Profesor</option>
+                            <option value="4">Estudiante</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Crear" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

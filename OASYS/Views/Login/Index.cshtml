@@ -1,0 +1,61 @@
+﻿@model IEnumerable<OASYS.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string correo = "";
+    string contraseña = "";
+}
+
+
+<div class="container body-content">
+
+    <h2>Iniciar Sesión.</h2>
+    <div>
+        <h4 style="color: red">@ViewBag.Mensaje</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+
+            <section id="loginForm">
+                <form action="@Url.Action("IniciarSesion", "Login", new { correo , contraseña })" class="form-horizontal" method="post" role="form">
+                    <input name="__RequestVerificationToken" type="hidden" value="viVrSdv8k6-8rQi9ThL9HlY5LRGIS9Ti7zxSDeZ7iHgvdprOt7fXbRVoupTSuE4g0azFQmPYi0HoZy7GNNHmLrig90nXojPX7aMjFI5SmXo1" />
+                    <hr />
+                    <div class="form-group">
+
+                        <label class="col-md-2 control-label" for="Email">Correo electrónico</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" data-val="true" data-val-required="Digite su correo." id="correo" name="correo" type="email" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="Password">Contraseña</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line password input-validation-error" data-val="true" data-val-length-max="50" data-val-length-min="8" data-val-required="Digite su contraseña." id="contraseña" name="contraseña" type="password" value="" aria-describedby="contraseña-error" aria-invalid="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Iniciar Sesión" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <a class="nav-link" href="@Url.Action("Create", "CrearUsuario")">
+                                <img src="~/Assets/Icons/icons8-user-48.png" /> Registrarse
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        @Html.ActionLink("Olvido su Contraseña? ", "Cambiar_Contraseña", "Login")
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+    <hr />
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Elimina";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>Se ha eliminado su Factura</h2>
+
+@{
+    int ides = Convert.ToInt32(ViewBag.IdEstudiante);
+    int idma = Convert.ToInt32(ViewBag.IdMatrucula);
+    string men = Convert.ToString(ViewBag.Mensaje);
+}
+
+@using (Html.BeginForm("ObtenerFactura", "Contabilidad", FormMethod.Post, htmlAttributes: new { id = "sform", @class = "form-inline" }))
+{
+    @Html.Hidden("IdEstudiante", ides)
+    @Html.Hidden("IdMatrucula", idma)
+    @Html.Hidden("Mensaje", men)
+}
+
+@Html.ActionLink("Volver a Atras", "Index")
+
+<script src="~/Assets/js/jquery-3.1.1.min.js"></script>
+<script src="~/Assets/js/autosummit.js"></script>

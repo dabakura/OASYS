@@ -1,0 +1,163 @@
+﻿@model OASYS.Models.Persona
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    string rol;
+   
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IDpersona)
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Identificación </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cedula, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cedula, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Tipo de Identificación </label>
+        <div class="col-md-10">
+            @Html.DropDownList("tipo_identificacion", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.tipo_identificacion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Nombre </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Primer Apellido </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.apellido1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.apellido1, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Segundo Apellido </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.apellido2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.apellido2, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Dirección </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Correo </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-8">
+        <label for="FechaNacimiento">Fecha de Nacimiento</label>
+        <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+            </div>
+            @Html.EditorFor(model => model.fechaNacimiento, new { htmlAttributes = new { @class = "form-control dp-app", @readonly = "True", @style = "background-color: white", @id = "FechaNacimiento" } })
+            @Html.ValidationMessageFor(model => model.fechaNacimiento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Rol </label>
+        <div class="col-md-10">
+            @{
+                if (Model.idRol == 1)
+                {
+                    <select class="form-control" name="idRol">
+                        <option value="1">Administrador</option>
+                        <option value="2">Colaborador</option>
+                        <option value="3">Profesor</option>
+                        <option value="4">Estudiante</option>
+                    </select>
+                }
+                else
+                {
+                    if (Model.idRol == 2)
+                    {
+                        <select class="form-control" name="idRol">
+                            <option value="2">Colaborador</option>
+                            <option value="1">Administrador</option>
+                            <option value="3">Profesor</option>
+                            <option value="4">Estudiante</option>
+                        </select>
+                    }
+                    else
+                    {
+                        if (Model.idRol == 3)
+                        {
+                            <select class="form-control" name="idRol">
+                                <option value="3">Profesor</option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Colaborador</option>
+                                <option value="4">Estudiante</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <select class="form-control" name="idRol">
+                                <option value="4">Estudiante</option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Colaborador</option>
+                                <option value="3">Profesor</option>
+                            </select>
+                        }
+                    }
+                }
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Estado Actual </label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Indicador_Activo)
+                @Html.ValidationMessageFor(model => model.Indicador_Activo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Modificar" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+<div>
+    <div class="btn-group">
+        <a class="nav-link" style="font-size: x-small; font: bold;" href="@Url.Action("IndexPermisos", "Usuarios")">
+            <img style="width:25px; height:25px;" src="~/Assets/Icons/icons8-return-48.png">
+        </a>
+    </div>
+</div>
+<script type="text/javascript">
+    var FechaNacimiento = new String("@Model.fechaNacimiento");
+    document.getElementById("FechaNacimiento").value = fechaInicial.substring(0, 10);
+</script>

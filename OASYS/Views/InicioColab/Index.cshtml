@@ -1,0 +1,63 @@
+﻿@model IEnumerable<OASYS.Models.Noticias>
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Title = "Editar Aula";
+    ViewBag.Title = "Editar Aula";
+    Interfaz x = new Interfaz();
+    string laya = x.ROL((int)Session["Rol"]);
+    Layout = laya;
+}
+
+
+<h2>Noticias</h2>
+<div class="progress progress-striped">
+    <div class="progress-bar progress-bar-warning" style="width: 100%"></div>
+</div>
+@{ int a = 1;
+
+    foreach (var item in Model)
+    {
+        if (a < 21)
+        {
+            if (a % 2 == 0)
+            {
+                <div class="container" style=" border: 2px solid #F4D03F; border-radius: 25px; text-align: center; color: white; background-color: #F4D03F; width: 50%;">
+                    <br />
+                    <br />
+                    <br />
+                    <p style="font-size: 1em">
+                        @Html.DisplayFor(modelItem => item.texto)
+                    </p>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            }
+            else
+            {
+                {
+                    <div class="container" style=" border: 2px solid #EB984E; border-radius: 25px; text-align: center; color: white; background-color: #EB984E; width: 50%;">
+
+                        <br />
+                        <br />
+                        <br />
+
+                        <p style="font-size: 1em">
+                            @Html.DisplayFor(modelItem => item.texto)
+                        </p>
+                        <br />
+                        <br />
+                        <br />
+
+                    </div>
+                }
+            }
+        }
+        <br />
+        <br />
+        a = a + 1;
+
+    }
+}
+
+

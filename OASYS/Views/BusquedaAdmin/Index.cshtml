@@ -1,0 +1,90 @@
+﻿@model IEnumerable<OASYS.Models.Persona>
+@{
+    ViewBag.Title = "Editar Aula";
+    Interfaz a = new Interfaz();
+    string laya = a.ROL((int)Session["Rol"]);
+    Layout = laya;
+
+}
+
+@using (Html.BeginForm())
+{
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <div class="input-group mb-4">
+                <table>
+                    <tr>
+                        <th>
+                            <input id="SearchString" name="SearchString" type="text" class="form-control"/>
+                        </th>
+                        <th>
+                            <button class="btn" type="submit">
+                                <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-search-48.png">
+                            </button>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+    <div class="table-responsive table-striped">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Cédula
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Primer Apellido
+                    </th>
+                    <th>
+                        Segundo Apellido
+                    </th>
+                    <th>
+                        Correo
+                    </th>
+
+                    <th>
+                        Matricula
+                    </th>
+
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cedula)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.apellido1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.apellido2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.correo)
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn" type="submit">
+                                    <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-edit-file-48.png"> @Html.ActionLink("Confirmar Matricula", "Index", new { controller = "MatriculaAdmin", action = "Index", ID_USER = item.IDpersona })
+                                </button>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+            </thead>
+        </table>
+    </div>

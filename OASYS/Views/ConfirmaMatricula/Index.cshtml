@@ -1,0 +1,71 @@
+﻿@model IEnumerable<OASYS.Models.CursoporMatricula>
+@using OASYS.Controllers
+
+
+@{
+    ViewBag.Title = "Cursos por Matricula";
+    int ID_USER = Convert.ToInt32(@ViewData["iduser"]);
+    int Id_Matricula = Convert.ToInt32(@ViewData["id_matricula"]);
+    int TOTAL_CURSOS = 0;
+    Interfaz f = new Interfaz();
+    string laya = f.ROL((int)Session["Rol"]);
+    Layout = laya;
+
+}
+
+<h2>Cursos por Matricula</h2>
+
+
+@{
+    ConfirmaMatriculaController a = new ConfirmaMatriculaController();
+    int total = 0;
+}
+
+<div class="table-responsive table-striped">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Curso
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @{
+
+                            int curso = item.GestiondeCursos;
+
+                            String b = a.Curso(curso);
+                            TOTAL_CURSOS++;
+
+                        }
+
+                        @(b)
+                    </td>
+
+                    <td>
+                        @{
+                            int d = a.Precio(curso);
+                            total = total + d;
+                        }
+
+                        @(d)
+                    </td>
+                    <td></td>
+                </tr>
+            }
+        </thead>
+    </table>
+</div>
+
+<h3>Total: @(total)</h3>
+
+@Html.ActionLink("Confirmar Pago", "Index", new { controller = "Facturacion", ID_ESTUDIANTE = ID_USER, ID_MATRICULA = Id_Matricula, PRECIO = total, Total_cursos = TOTAL_CURSOS })
+

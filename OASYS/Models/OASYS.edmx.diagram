@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d348577ed76247e3b1920da27a5ab730" Name="Diagram1">
+        <EntityTypeShape EntityType="BD_OASYSModel.Aula" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.Curso" Width="1.5" PointX="6" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.CursoporMatricula" Width="1.5" PointX="13.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.Facturacion" Width="1.5" PointX="10.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.GestiondeCursos" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.GestionDePagos" Width="1.5" PointX="12.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.Horario" Width="1.5" PointX="6" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.Matricula" Width="1.5" PointX="8.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.Nivel" Width="1.5" PointX="3.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.NotadeCredito" Width="1.5" PointX="15.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.Noticias" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.Permiso" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.Persona" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.Rol" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.TipodeIdentificacion" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.TIPOPAGO" Width="1.5" PointX="8.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_OASYSModel.Usuario" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="BD_OASYSModel.FK_IDaula" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_IDcurso" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_IDcursoN" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_GestiondeCursos" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_IdMatricula" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_Factura" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_idEstudiante1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_IdFactura" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_IdMatricula2" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_TipoPago" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_IDhorario" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_IDprofesor" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_idPersona4" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_IdEstudiante" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_IdMatricula20" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_idEstudiante10" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_TipoPago1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_idRol1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_idUsuario0" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_Usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_OASYSModel.FK_Usuario2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BD_OASYSModel.View_Facturas" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BD_OASYSModel.View_Morosos" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BD_OASYSModel.View_FacturaDescripcion" Width="1.875" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

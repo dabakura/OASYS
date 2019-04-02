@@ -1,0 +1,55 @@
+﻿@model IEnumerable<OASYS.Models.Aula>
+@{
+    ViewBag.Title = "Aula";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Aula</h2>
+
+<div class="row mb-3">
+    <div class="col-12">   
+        <a class="nav-link" href="@Url.Action("AulaCrear", "Aula")">
+            <img src="~/Assets/Icons/icons8-add-48.png" /> Crear Aula
+        </a>
+     </div>
+</div>
+ 
+        <div class="table-responsive table-striped">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            Nombre del Aula
+                        </th>
+                        <th>
+                            Descripción
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model )
+                    {
+                        <tr>
+                            <td>
+                                @item.nombre
+                            </td>
+                            <td>
+                                @item.descripcion
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    @using (Html.BeginForm("AulaEdita", "Aula", new { id = item.IDaula }))
+                                    { 
+                                    <button class="btn" type="submit">
+                                        <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-edit-file-48.png"> Editar
+                                    </button>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        

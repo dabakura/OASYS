@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Confirmacion";
+    Interfaz f = new Interfaz();
+    string laya = f.ROL((int)Session["Rol"]);
+    Layout = laya;
+}
+<h2>Confirmacion</h2>
+
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="~/Assets/img/logo.png" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Su matrícula ha sido guardada satisfactoriamente</h5>
+        <p class="card-text">Se ha enviado un mensaje de confirmación a su correo, puede proceder a pagar físicamente en la Academia.</p>
+        <a class="card-text">Gracias.</a>
+    </div>
+</div>

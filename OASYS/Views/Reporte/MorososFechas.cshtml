@@ -1,0 +1,97 @@
+﻿@model IEnumerable<OASYS.Models.View_Morosos>
+
+@{
+    ViewBag.Title = "MorososFechas";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>Morosos</h2>
+@using (Html.BeginForm("MorososFechas", "Reporte", FormMethod.Post, htmlAttributes: new { id = "formbuscar", @class = "form-inline" }))
+{
+    <div class="form-group">
+        @Html.Label("Desde", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBox("desde", DateTime.Now.ToShortDateString(), htmlAttributes: new { @type = "date", required = true, @class = "form-control datepicker" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Hasta", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBox("hasta", DateTime.Now.ToShortDateString(), htmlAttributes: new { @type = "date", required = true, @class = "form-control datepicker" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-8">
+            <input type="submit" value="Buscar" class="btn btn-success" />
+        </div>
+        <hr />
+    </div>
+}
+
+@if (Model.Count() > 0)
+{
+    @Html.ActionLink("Descargar PDF", "MorososDescargar", "Reporte", htmlAttributes: new { @class = "btn btn-primary col-2 align-self-end  float-right" })
+}
+
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ultima_Factura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idEstudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ultima_Fecha)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ultima_Factura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idEstudiante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ultima_Fecha)
+            </td>
+        </tr>
+    }
+
+</table>

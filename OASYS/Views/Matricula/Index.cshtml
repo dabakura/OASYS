@@ -1,0 +1,140 @@
+﻿@model IEnumerable<OASYS.Models.GestiondeCursos>
+@using OASYS.Controllers
+@{
+    MatriculaController cursos = new MatriculaController();
+    ViewBag.Title = "Index";
+    int ID_USER = Convert.ToInt32(@ViewData["id"]);
+    int id_matricula = cursos.Control_Id(ID_USER);
+
+    Interfaz f = new Interfaz();
+    string laya = f.ROL((int)Session["Rol"]);
+    Layout = laya;
+}
+
+<h2>Matricular Cursos</h2>
+
+<p>
+    <h5>Matrícula</h5>
+</p>
+<div class="table-responsive table-striped">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Curso
+                </th>
+
+                <th>
+                    Nivel
+                </th>
+
+                <th>
+                    Precio
+                </th>
+
+                <th>
+                    Aula
+                </th>
+
+                <th>
+                    Horario
+                </th>
+                <th>
+                    Profesor
+                </th>
+                <th>
+                    Estado
+                </th>
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Curso.nombre)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Curso.Nivel.nivel1)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Curso.precio)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aula.nombre)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Horario.dia)
+                        @Html.DisplayFor(modelItem => item.Horario.hora)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Persona.nombre)
+                        @Html.DisplayFor(modelItem => item.Persona.apellido1)
+                        @Html.DisplayFor(modelItem => item.Persona.apellido2)
+
+                    </td>
+                    <td>
+                        @{
+
+
+
+                            MatriculaController a = new MatriculaController();
+
+                            id_matricula = id_matricula;
+                            item.IDGestiondeCursos = item.IDGestiondeCursos;
+                            bool estado = a.Matriculado(id_matricula, item.IDGestiondeCursos);
+                            estado = estado;
+                        }
+
+                        @if (estado)
+                        {
+
+
+                            <div class="btn-group">
+                                <button class="btn" type="submit">
+                                    <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-delete-bin-48.png"> @Html.ActionLink("Quitar", "Delete", new { id_curso = item.IDGestiondeCursos, id_matricula = id_matricula })
+                                </button>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="btn-group">
+                                <button class="btn" type="submit">
+                                    <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-add-48.png"> @Html.ActionLink("Matricular", "Create", new { id_curso = item.IDGestiondeCursos, id_matricula = id_matricula })
+                                </button>
+                            </div>
+
+
+
+
+                        }
+
+
+                    </td>
+                </tr>
+
+            }
+        </thead>
+    </table>
+</div>
+
+
+<div class="row mb-3">
+    <div class="col-12">
+        <a class="nav-link">
+            <img src="~/Assets/Icons/icons8-save-close-48.png" /> @Html.ActionLink("Confirmar Matricula", "Index", new { controller = "MatriculaEstudiante", action = "Index", id_matricula = id_matricula })
+        </a>   
+    </div>
+</div>
+
+
+
+
+
+

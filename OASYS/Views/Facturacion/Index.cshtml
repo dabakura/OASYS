@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OASYS.Models.Facturacion>
+@using OASYS.Controllers
+@{
+    ViewBag.Title = "Editar Aula";
+    Interfaz inter = new Interfaz();
+    string laya = inter.ROL((int)Session["Rol"]);
+    Layout = laya;
+}
+
+
+
+<h5>Factura</h5>
+
+@{
+    int Id_Estudiante = Convert.ToInt32(@ViewData["id_est"]);
+    int Id_Matricula = Convert.ToInt32(ViewData["id_matricula"]);
+    int total = Convert.ToInt32(ViewData["precio"]);
+    FacturacionController a = new FacturacionController();
+    String nombre = a.Nombre(Id_Estudiante);
+    String apellido1 = a.Apellido1(Id_Estudiante);
+    String apellido2 = a.Apellido2(Id_Estudiante);
+    Int32 id_Estudiante = a.id_Estudiante(Id_Estudiante);
+    Int32 Total_Cursos = Convert.ToInt32(ViewData["Total_Cursos"]);
+    int numeroFactura = a.agregarFactura(Id_Matricula, id_Estudiante, nombre, apellido1, apellido2, total, Total_Cursos);
+    string clave = a.Clave(Id_Matricula);
+
+}
+
+@using (Html.BeginForm("ObtenerFactura", "Facturacion", FormMethod.Post, htmlAttributes: new { id = "sform", @class = "form-inline" }))
+{
+    @Html.Hidden("matricula", Id_Matricula)
+    @Html.Hidden("idEstudiante", id_Estudiante)
+}
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="~/Assets/img/brand/Logo - Facturas.png" alt="Logo Factura">
+    <div class="card-body">
+        <h5 class="card-title">Resumen de la Factura</h5>
+        <p class="card-text">Numero de factura:   @(numeroFactura) </p>
+        <p class="card-text">Nombre:  @(nombre)  @(apellido1)    @(apellido2) </p>
+        <p class="card-text">Fecha:  @(DateTime.Now) </p>
+        <p class="card-text">Total: @(total) </p>
+    </div>
+</div>
+
+<script src="~/Assets/js/jquery-3.1.1.min.js"></script>
+<script src="~/Assets/js/autosummit.js"></script>

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<OASYS.Models.View_Facturas>
+@using OASYS.Models;
+
+@{
+    ViewBag.Title = "Facturas";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+
+}
+
+<h2>Facturas</h2>
+@using (Html.BeginForm("Facturas", "Reporte", FormMethod.Post, htmlAttributes: new { id = "formbuscar", @class= "form-inline" }))
+{
+    <div class="form-group">
+        @Html.Label("Desde", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBox("desde", DateTime.Now.ToShortDateString(), htmlAttributes: new { @type = "date", required = true, @class = "form-control datepicker" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Hasta", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBox("hasta", DateTime.Now.ToShortDateString(), htmlAttributes: new { @type = "date", required = true, @class = "form-control datepicker" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-8">
+            <input type="submit" value="Buscar" class="btn btn-success" />
+        </div>
+        <hr/>
+    </div>
+}
+@if (Model.Count() > 0)
+{
+    @Html.ActionLink("Descargar PDF", "FacturasDescargar", "Reporte", htmlAttributes: new { @class = "btn btn-primary col-2 align-self-end  float-right" })
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDfactura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaEmision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidadCursos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subtotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDfactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaEmision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidadCursos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subtotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+        </tr>
+    }
+
+</table>

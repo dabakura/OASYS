@@ -1,0 +1,1678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BD_OASYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aula">
+          <Key>
+            <PropertyRef Name="IDaula" />
+          </Key>
+          <Property Name="IDaula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="fechaModifica" Type="datetime" />
+          <Property Name="usuarioModifica" Type="int" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="indicador_activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="IDcurso" />
+          </Key>
+          <Property Name="IDcurso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="precio" Type="int" Nullable="false" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="fechaModifica" Type="datetime" Nullable="false" />
+          <Property Name="usuarioModifica" Type="int" Nullable="false" />
+          <Property Name="Id_Nivel" Type="int" Nullable="false" />
+          <Property Name="Indicador_Activo" Type="bit" />
+          <Property Name="FechaRegistro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CursoporMatricula">
+          <Key>
+            <PropertyRef Name="IDCursosporM" />
+          </Key>
+          <Property Name="IDCursosporM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMatricula" Type="int" Nullable="false" />
+          <Property Name="GestiondeCursos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Facturacion">
+          <Key>
+            <PropertyRef Name="IDfactura" />
+          </Key>
+          <Property Name="IDfactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="claveNumerica" Type="varchar" MaxLength="100" />
+          <Property Name="idEstudiante" Type="int" Nullable="false" />
+          <Property Name="IdMatricula" Type="int" Nullable="false" />
+          <Property Name="fechaEmision" Type="datetime" Nullable="false" />
+          <Property Name="telefono" Type="int" />
+          <Property Name="subtotal" Type="float" />
+          <Property Name="total" Type="float" Nullable="false" />
+          <Property Name="cantidadCursos" Type="int" Nullable="false" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="500" />
+          <Property Name="TipodePago" Type="int" />
+          <Property Name="Maestro" Type="varchar" MaxLength="2000" />
+          <Property Name="Detalle" Type="varchar" MaxLength="3000" />
+          <Property Name="Indicador_Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="GestiondeCursos">
+          <Key>
+            <PropertyRef Name="IDGestiondeCursos" />
+          </Key>
+          <Property Name="IDGestiondeCursos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDcurso" Type="int" Nullable="false" />
+          <Property Name="IDaula" Type="int" Nullable="false" />
+          <Property Name="IDhorario" Type="int" Nullable="false" />
+          <Property Name="IDprofesor" Type="int" Nullable="false" />
+          <Property Name="fechaRegistro" Type="date" Nullable="false" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="fechaModifica" Type="datetime" />
+          <Property Name="usuarioModifica" Type="int" />
+          <Property Name="Fechacrea" Type="datetime" />
+          <Property Name="Indicador_Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="GestionDePagos">
+          <Key>
+            <PropertyRef Name="IDGESTION" />
+          </Key>
+          <Property Name="IDGESTION" Type="int" Nullable="false" />
+          <Property Name="idPersona" Type="int" Nullable="false" />
+          <Property Name="IdFactura" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Horario">
+          <Key>
+            <PropertyRef Name="IDhorario" />
+          </Key>
+          <Property Name="IDhorario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dia" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="hora" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="fechaModifica" Type="date" />
+          <Property Name="usuarioModifica" Type="int" />
+          <Property Name="FechaRegistro" Type="date" />
+          <Property Name="Indicador_Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Matricula">
+          <Key>
+            <PropertyRef Name="IDmatricula" />
+          </Key>
+          <Property Name="IDmatricula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEstudiante" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nivel">
+          <Key>
+            <PropertyRef Name="Id_Nivel" />
+          </Key>
+          <Property Name="Id_Nivel" Type="int" Nullable="false" />
+          <Property Name="nivel" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NotadeCredito">
+          <Key>
+            <PropertyRef Name="IDNOTACREDITO" />
+          </Key>
+          <Property Name="IDNOTACREDITO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDfactura" Type="int" />
+          <Property Name="claveNumerica" Type="varchar" MaxLength="100" />
+          <Property Name="idEstudiante" Type="int" Nullable="false" />
+          <Property Name="IdMatricula" Type="int" Nullable="false" />
+          <Property Name="fechaEmision" Type="datetime" Nullable="false" />
+          <Property Name="telefono" Type="int" />
+          <Property Name="subtotal" Type="float" />
+          <Property Name="total" Type="float" Nullable="false" />
+          <Property Name="cantidadCursos" Type="int" Nullable="false" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="500" />
+          <Property Name="TipodePago" Type="int" />
+          <Property Name="Maestro" Type="varchar" MaxLength="2000" />
+          <Property Name="Detalle" Type="varchar" MaxLength="3000" />
+          <Property Name="Indicador_Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Noticias">
+          <Key>
+            <PropertyRef Name="IDNoticia" />
+          </Key>
+          <Property Name="IDNoticia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="texto" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="fechaModifica" Type="date" Nullable="false" />
+          <Property Name="usuarioModifica" Type="date" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="Indicador_Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="idPermiso" />
+          </Key>
+          <Property Name="idPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="idRol" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="date" Nullable="false" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="fechaModifica" Type="date" />
+          <Property Name="usuarioModifica" Type="int" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IDpersona" />
+          </Key>
+          <Property Name="IDpersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tipo_identificacion" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido1" Type="varchar" MaxLength="50" />
+          <Property Name="apellido2" Type="varchar" MaxLength="50" />
+          <Property Name="direccion" Type="varchar" MaxLength="250" />
+          <Property Name="correo" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" />
+          <Property Name="foto" Type="image" />
+          <Property Name="estado" Type="bit" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idRol" Type="int" Nullable="false" />
+          <Property Name="fechaRegistro" Type="date" Nullable="false" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="fechaModifica" Type="date" />
+          <Property Name="usuarioModifica" Type="int" />
+          <Property Name="Indicador_Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="IDrol" />
+          </Key>
+          <Property Name="IDrol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaRegistro" Type="date" Nullable="false" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="fechaModifica" Type="date" />
+          <Property Name="usuarioModifica" Type="int" />
+        </EntityType>
+        <EntityType Name="TipodeIdentificacion">
+          <Key>
+            <PropertyRef Name="ID_Identificacion" />
+          </Key>
+          <Property Name="ID_Identificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIPO_IDENTIFICACION" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TIPOPAGO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TIPODEPAGO" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDusuario" />
+          </Key>
+          <Property Name="IDusuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaRegistro" Type="date" Nullable="false" />
+          <Property Name="usuarioCrea" Type="int" Nullable="false" />
+          <Property Name="fechaModifica" Type="date" />
+          <Property Name="usuarioModifica" Type="int" />
+          <Property Name="Indicador_Activo" Type="bit" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BD_OASYS.dbo.View_FacturaDescripcion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="View_FacturaDescripcion">
+          <Key>
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="precio" />
+            <PropertyRef Name="IDfactura" />
+            <PropertyRef Name="IDmatricula" />
+            <PropertyRef Name="IdEstudiante" />
+          </Key>
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="precio" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="IDfactura" Type="int" Nullable="false" />
+          <Property Name="IDmatricula" Type="int" Nullable="false" />
+          <Property Name="IdEstudiante" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BD_OASYS.dbo.View_Facturas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="View_Facturas">
+          <Key>
+            <PropertyRef Name="IDfactura" />
+            <PropertyRef Name="idEstudiante" />
+            <PropertyRef Name="cedula" />
+            <PropertyRef Name="IdMatricula" />
+            <PropertyRef Name="fechaEmision" />
+            <PropertyRef Name="cantidadCursos" />
+            <PropertyRef Name="total" />
+          </Key>
+          <Property Name="IDfactura" Type="int" Nullable="false" />
+          <Property Name="idEstudiante" Type="int" Nullable="false" />
+          <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido1" Type="varchar" MaxLength="50" />
+          <Property Name="apellido2" Type="varchar" MaxLength="50" />
+          <Property Name="IdMatricula" Type="int" Nullable="false" />
+          <Property Name="fechaEmision" Type="datetime" Nullable="false" />
+          <Property Name="cantidadCursos" Type="int" Nullable="false" />
+          <Property Name="subtotal" Type="float" />
+          <Property Name="total" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BD_OASYS.dbo.View_Morosos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="View_Morosos">
+          <Key>
+            <PropertyRef Name="idEstudiante" />
+            <PropertyRef Name="cedula" />
+            <PropertyRef Name="correo" />
+          </Key>
+          <Property Name="Ultima Factura" Type="int" />
+          <Property Name="idEstudiante" Type="int" Nullable="false" />
+          <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido1" Type="varchar" MaxLength="50" />
+          <Property Name="apellido2" Type="varchar" MaxLength="50" />
+          <Property Name="correo" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Ultima Fecha" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Factura">
+          <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="0..1" />
+          <End Role="NotadeCredito" Type="Self.NotadeCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facturacion">
+              <PropertyRef Name="IDfactura" />
+            </Principal>
+            <Dependent Role="NotadeCredito">
+              <PropertyRef Name="IDfactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestiondeCursos">
+          <End Role="GestiondeCursos" Type="Self.GestiondeCursos" Multiplicity="1" />
+          <End Role="CursoporMatricula" Type="Self.CursoporMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GestiondeCursos">
+              <PropertyRef Name="IDGestiondeCursos" />
+            </Principal>
+            <Dependent Role="CursoporMatricula">
+              <PropertyRef Name="GestiondeCursos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDaula">
+          <End Role="Aula" Type="Self.Aula" Multiplicity="1" />
+          <End Role="GestiondeCursos" Type="Self.GestiondeCursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aula">
+              <PropertyRef Name="IDaula" />
+            </Principal>
+            <Dependent Role="GestiondeCursos">
+              <PropertyRef Name="IDaula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDcurso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+          <End Role="GestiondeCursos" Type="Self.GestiondeCursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="IDcurso" />
+            </Principal>
+            <Dependent Role="GestiondeCursos">
+              <PropertyRef Name="IDcurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDcursoN">
+          <End Role="Nivel" Type="Self.Nivel" Multiplicity="1" />
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nivel">
+              <PropertyRef Name="Id_Nivel" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="Id_Nivel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdEstudiante">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDpersona" />
+            </Principal>
+            <Dependent Role="Matricula">
+              <PropertyRef Name="IdEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idEstudiante1">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDpersona" />
+            </Principal>
+            <Dependent Role="Facturacion">
+              <PropertyRef Name="idEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idEstudiante10">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="NotadeCredito" Type="Self.NotadeCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDpersona" />
+            </Principal>
+            <Dependent Role="NotadeCredito">
+              <PropertyRef Name="idEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdFactura">
+          <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="1" />
+          <End Role="GestionDePagos" Type="Self.GestionDePagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facturacion">
+              <PropertyRef Name="IDfactura" />
+            </Principal>
+            <Dependent Role="GestionDePagos">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDhorario">
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="GestiondeCursos" Type="Self.GestiondeCursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="IDhorario" />
+            </Principal>
+            <Dependent Role="GestiondeCursos">
+              <PropertyRef Name="IDhorario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdMatricula">
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="1" />
+          <End Role="CursoporMatricula" Type="Self.CursoporMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matricula">
+              <PropertyRef Name="IDmatricula" />
+            </Principal>
+            <Dependent Role="CursoporMatricula">
+              <PropertyRef Name="IdMatricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdMatricula2">
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="1" />
+          <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matricula">
+              <PropertyRef Name="IDmatricula" />
+            </Principal>
+            <Dependent Role="Facturacion">
+              <PropertyRef Name="IdMatricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdMatricula20">
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="1" />
+          <End Role="NotadeCredito" Type="Self.NotadeCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matricula">
+              <PropertyRef Name="IDmatricula" />
+            </Principal>
+            <Dependent Role="NotadeCredito">
+              <PropertyRef Name="IdMatricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPersona4">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="GestionDePagos" Type="Self.GestionDePagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDpersona" />
+            </Principal>
+            <Dependent Role="GestionDePagos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDprofesor">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="GestiondeCursos" Type="Self.GestiondeCursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDpersona" />
+            </Principal>
+            <Dependent Role="GestiondeCursos">
+              <PropertyRef Name="IDprofesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idRol1">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="IDrol" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idUsuario0">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDusuario" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoPago">
+          <End Role="TIPOPAGO" Type="Self.TIPOPAGO" Multiplicity="0..1" />
+          <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOPAGO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Facturacion">
+              <PropertyRef Name="TipodePago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoPago1">
+          <End Role="TIPOPAGO" Type="Self.TIPOPAGO" Multiplicity="0..1" />
+          <End Role="NotadeCredito" Type="Self.NotadeCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOPAGO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NotadeCredito">
+              <PropertyRef Name="TipodePago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDusuario" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario2">
+          <End Role="TipodeIdentificacion" Type="Self.TipodeIdentificacion" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipodeIdentificacion">
+              <PropertyRef Name="ID_Identificacion" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="tipo_identificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_OASYSModelStoreContainer">
+          <EntitySet Name="Aula" EntityType="Self.Aula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CursoporMatricula" EntityType="Self.CursoporMatricula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facturacion" EntityType="Self.Facturacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GestiondeCursos" EntityType="Self.GestiondeCursos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GestionDePagos" EntityType="Self.GestionDePagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Horario" EntityType="Self.Horario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matricula" EntityType="Self.Matricula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nivel" EntityType="Self.Nivel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotadeCredito" EntityType="Self.NotadeCredito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Noticias" EntityType="Self.Noticias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipodeIdentificacion" EntityType="Self.TipodeIdentificacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOPAGO" EntityType="Self.TIPOPAGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_FacturaDescripcion" EntityType="Self.View_FacturaDescripcion" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_FacturaDescripcion].[nombre] AS [nombre], 
+    [View_FacturaDescripcion].[precio] AS [precio], 
+    [View_FacturaDescripcion].[descripcion] AS [descripcion], 
+    [View_FacturaDescripcion].[IDfactura] AS [IDfactura], 
+    [View_FacturaDescripcion].[IDmatricula] AS [IDmatricula], 
+    [View_FacturaDescripcion].[IdEstudiante] AS [IdEstudiante]
+    FROM [dbo].[View_FacturaDescripcion] AS [View_FacturaDescripcion]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Facturas" EntityType="Self.View_Facturas" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Facturas].[IDfactura] AS [IDfactura], 
+    [View_Facturas].[idEstudiante] AS [idEstudiante], 
+    [View_Facturas].[cedula] AS [cedula], 
+    [View_Facturas].[nombre] AS [nombre], 
+    [View_Facturas].[apellido1] AS [apellido1], 
+    [View_Facturas].[apellido2] AS [apellido2], 
+    [View_Facturas].[IdMatricula] AS [IdMatricula], 
+    [View_Facturas].[fechaEmision] AS [fechaEmision], 
+    [View_Facturas].[cantidadCursos] AS [cantidadCursos], 
+    [View_Facturas].[subtotal] AS [subtotal], 
+    [View_Facturas].[total] AS [total]
+    FROM [dbo].[View_Facturas] AS [View_Facturas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Morosos" EntityType="Self.View_Morosos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Morosos].[Ultima Factura] AS [Ultima Factura], 
+    [View_Morosos].[idEstudiante] AS [idEstudiante], 
+    [View_Morosos].[cedula] AS [cedula], 
+    [View_Morosos].[nombre] AS [nombre], 
+    [View_Morosos].[apellido1] AS [apellido1], 
+    [View_Morosos].[apellido2] AS [apellido2], 
+    [View_Morosos].[correo] AS [correo], 
+    [View_Morosos].[Ultima Fecha] AS [Ultima Fecha]
+    FROM [dbo].[View_Morosos] AS [View_Morosos]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Factura" Association="Self.FK_Factura">
+            <End Role="Facturacion" EntitySet="Facturacion" />
+            <End Role="NotadeCredito" EntitySet="NotadeCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestiondeCursos" Association="Self.FK_GestiondeCursos">
+            <End Role="GestiondeCursos" EntitySet="GestiondeCursos" />
+            <End Role="CursoporMatricula" EntitySet="CursoporMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDaula" Association="Self.FK_IDaula">
+            <End Role="Aula" EntitySet="Aula" />
+            <End Role="GestiondeCursos" EntitySet="GestiondeCursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDcurso" Association="Self.FK_IDcurso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="GestiondeCursos" EntitySet="GestiondeCursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDcursoN" Association="Self.FK_IDcursoN">
+            <End Role="Nivel" EntitySet="Nivel" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdEstudiante" Association="Self.FK_IdEstudiante">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Matricula" EntitySet="Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idEstudiante1" Association="Self.FK_idEstudiante1">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Facturacion" EntitySet="Facturacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idEstudiante10" Association="Self.FK_idEstudiante10">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="NotadeCredito" EntitySet="NotadeCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdFactura" Association="Self.FK_IdFactura">
+            <End Role="Facturacion" EntitySet="Facturacion" />
+            <End Role="GestionDePagos" EntitySet="GestionDePagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDhorario" Association="Self.FK_IDhorario">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="GestiondeCursos" EntitySet="GestiondeCursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdMatricula" Association="Self.FK_IdMatricula">
+            <End Role="Matricula" EntitySet="Matricula" />
+            <End Role="CursoporMatricula" EntitySet="CursoporMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdMatricula2" Association="Self.FK_IdMatricula2">
+            <End Role="Matricula" EntitySet="Matricula" />
+            <End Role="Facturacion" EntitySet="Facturacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdMatricula20" Association="Self.FK_IdMatricula20">
+            <End Role="Matricula" EntitySet="Matricula" />
+            <End Role="NotadeCredito" EntitySet="NotadeCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPersona4" Association="Self.FK_idPersona4">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="GestionDePagos" EntitySet="GestionDePagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDprofesor" Association="Self.FK_IDprofesor">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="GestiondeCursos" EntitySet="GestiondeCursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idRol1" Association="Self.FK_idRol1">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idUsuario0" Association="Self.FK_idUsuario0">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoPago" Association="Self.FK_TipoPago">
+            <End Role="TIPOPAGO" EntitySet="TIPOPAGO" />
+            <End Role="Facturacion" EntitySet="Facturacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoPago1" Association="Self.FK_TipoPago1">
+            <End Role="TIPOPAGO" EntitySet="TIPOPAGO" />
+            <End Role="NotadeCredito" EntitySet="NotadeCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario1" Association="Self.FK_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario2" Association="Self.FK_Usuario2">
+            <End Role="TipodeIdentificacion" EntitySet="TipodeIdentificacion" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_OASYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aula">
+          <Key>
+            <PropertyRef Name="IDaula" />
+          </Key>
+          <Property Name="IDaula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="fechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="usuarioModifica" Type="Int32" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="indicador_activo" Type="Boolean" />
+          <NavigationProperty Name="GestiondeCursos" Relationship="Self.FK_IDaula" FromRole="Aula" ToRole="GestiondeCursos" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="IDcurso" />
+          </Key>
+          <Property Name="IDcurso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="fechaModifica" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioModifica" Type="Int32" Nullable="false" />
+          <Property Name="Id_Nivel" Type="Int32" Nullable="false" />
+          <Property Name="Indicador_Activo" Type="Boolean" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GestiondeCursos" Relationship="Self.FK_IDcurso" FromRole="Curso" ToRole="GestiondeCursos" />
+          <NavigationProperty Name="Nivel" Relationship="Self.FK_IDcursoN" FromRole="Curso" ToRole="Nivel" />
+        </EntityType>
+        <EntityType Name="CursoporMatricula">
+          <Key>
+            <PropertyRef Name="IDCursosporM" />
+          </Key>
+          <Property Name="IDCursosporM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMatricula" Type="Int32" Nullable="false" />
+          <Property Name="GestiondeCursos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GestiondeCursos1" Relationship="Self.FK_GestiondeCursos" FromRole="CursoporMatricula" ToRole="GestiondeCursos" />
+          <NavigationProperty Name="Matricula" Relationship="Self.FK_IdMatricula" FromRole="CursoporMatricula" ToRole="Matricula" />
+        </EntityType>
+        <EntityType Name="Facturacion">
+          <Key>
+            <PropertyRef Name="IDfactura" />
+          </Key>
+          <Property Name="IDfactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="claveNumerica" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idEstudiante" Type="Int32" Nullable="false" />
+          <Property Name="IdMatricula" Type="Int32" Nullable="false" />
+          <Property Name="fechaEmision" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="telefono" Type="Int32" />
+          <Property Name="subtotal" Type="Double" />
+          <Property Name="total" Type="Double" Nullable="false" />
+          <Property Name="cantidadCursos" Type="Int32" Nullable="false" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TipodePago" Type="Int32" />
+          <Property Name="Maestro" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Detalle" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Indicador_Activo" Type="Boolean" />
+          <NavigationProperty Name="NotadeCredito" Relationship="Self.FK_Factura" FromRole="Facturacion" ToRole="NotadeCredito" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_idEstudiante1" FromRole="Facturacion" ToRole="Persona" />
+          <NavigationProperty Name="GestionDePagos" Relationship="Self.FK_IdFactura" FromRole="Facturacion" ToRole="GestionDePagos" />
+          <NavigationProperty Name="Matricula" Relationship="Self.FK_IdMatricula2" FromRole="Facturacion" ToRole="Matricula" />
+          <NavigationProperty Name="TIPOPAGO" Relationship="Self.FK_TipoPago" FromRole="Facturacion" ToRole="TIPOPAGO" />
+        </EntityType>
+        <EntityType Name="GestiondeCursos">
+          <Key>
+            <PropertyRef Name="IDGestiondeCursos" />
+          </Key>
+          <Property Name="IDGestiondeCursos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDcurso" Type="Int32" Nullable="false" />
+          <Property Name="IDaula" Type="Int32" Nullable="false" />
+          <Property Name="IDhorario" Type="Int32" Nullable="false" />
+          <Property Name="IDprofesor" Type="Int32" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="fechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="usuarioModifica" Type="Int32" />
+          <Property Name="Fechacrea" Type="DateTime" Precision="3" />
+          <Property Name="Indicador_Activo" Type="Boolean" />
+          <NavigationProperty Name="Aula" Relationship="Self.FK_IDaula" FromRole="GestiondeCursos" ToRole="Aula" />
+          <NavigationProperty Name="Curso" Relationship="Self.FK_IDcurso" FromRole="GestiondeCursos" ToRole="Curso" />
+          <NavigationProperty Name="CursoporMatricula" Relationship="Self.FK_GestiondeCursos" FromRole="GestiondeCursos" ToRole="CursoporMatricula" />
+          <NavigationProperty Name="Horario" Relationship="Self.FK_IDhorario" FromRole="GestiondeCursos" ToRole="Horario" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_IDprofesor" FromRole="GestiondeCursos" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="GestionDePagos">
+          <Key>
+            <PropertyRef Name="IDGESTION" />
+          </Key>
+          <Property Name="IDGESTION" Type="Int32" Nullable="false" />
+          <Property Name="idPersona" Type="Int32" Nullable="false" />
+          <Property Name="IdFactura" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Facturacion" Relationship="Self.FK_IdFactura" FromRole="GestionDePagos" ToRole="Facturacion" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_idPersona4" FromRole="GestionDePagos" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Horario">
+          <Key>
+            <PropertyRef Name="IDhorario" />
+          </Key>
+          <Property Name="IDhorario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hora" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="fechaModifica" Type="DateTime" Precision="0" />
+          <Property Name="usuarioModifica" Type="Int32" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="0" />
+          <Property Name="Indicador_Activo" Type="Boolean" />
+          <NavigationProperty Name="GestiondeCursos" Relationship="Self.FK_IDhorario" FromRole="Horario" ToRole="GestiondeCursos" />
+        </EntityType>
+        <EntityType Name="Matricula">
+          <Key>
+            <PropertyRef Name="IDmatricula" />
+          </Key>
+          <Property Name="IDmatricula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEstudiante" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CursoporMatricula" Relationship="Self.FK_IdMatricula" FromRole="Matricula" ToRole="CursoporMatricula" />
+          <NavigationProperty Name="Facturacion" Relationship="Self.FK_IdMatricula2" FromRole="Matricula" ToRole="Facturacion" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_IdEstudiante" FromRole="Matricula" ToRole="Persona" />
+          <NavigationProperty Name="NotadeCredito" Relationship="Self.FK_IdMatricula20" FromRole="Matricula" ToRole="NotadeCredito" />
+        </EntityType>
+        <EntityType Name="Nivel">
+          <Key>
+            <PropertyRef Name="Id_Nivel" />
+          </Key>
+          <Property Name="Id_Nivel" Type="Int32" Nullable="false" />
+          <Property Name="nivel1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Curso" Relationship="Self.FK_IDcursoN" FromRole="Nivel" ToRole="Curso" />
+        </EntityType>
+        <EntityType Name="NotadeCredito">
+          <Key>
+            <PropertyRef Name="IDNOTACREDITO" />
+          </Key>
+          <Property Name="IDNOTACREDITO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDfactura" Type="Int32" />
+          <Property Name="claveNumerica" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idEstudiante" Type="Int32" Nullable="false" />
+          <Property Name="IdMatricula" Type="Int32" Nullable="false" />
+          <Property Name="fechaEmision" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="telefono" Type="Int32" />
+          <Property Name="subtotal" Type="Double" />
+          <Property Name="total" Type="Double" Nullable="false" />
+          <Property Name="cantidadCursos" Type="Int32" Nullable="false" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TipodePago" Type="Int32" />
+          <Property Name="Maestro" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Detalle" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Indicador_Activo" Type="Boolean" />
+          <NavigationProperty Name="Facturacion" Relationship="Self.FK_Factura" FromRole="NotadeCredito" ToRole="Facturacion" />
+          <NavigationProperty Name="Matricula" Relationship="Self.FK_IdMatricula20" FromRole="NotadeCredito" ToRole="Matricula" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_idEstudiante10" FromRole="NotadeCredito" ToRole="Persona" />
+          <NavigationProperty Name="TIPOPAGO" Relationship="Self.FK_TipoPago1" FromRole="NotadeCredito" ToRole="TIPOPAGO" />
+        </EntityType>
+        <EntityType Name="Noticias">
+          <Key>
+            <PropertyRef Name="IDNoticia" />
+          </Key>
+          <Property Name="IDNoticia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="texto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="fechaModifica" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioModifica" Type="DateTime" Precision="0" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="Indicador_Activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="idPermiso" />
+          </Key>
+          <Property Name="idPermiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="idRol" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="fechaModifica" Type="DateTime" Precision="0" />
+          <Property Name="usuarioModifica" Type="Int32" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_idRol1" FromRole="Permiso" ToRole="Rol" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_idUsuario0" FromRole="Permiso" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IDpersona" />
+          </Key>
+          <Property Name="IDpersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_identificacion" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="estado" Type="Boolean" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idRol" Type="Int32" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="fechaModifica" Type="DateTime" Precision="0" />
+          <Property Name="usuarioModifica" Type="Int32" />
+          <Property Name="Indicador_Activo" Type="Boolean" />
+          <NavigationProperty Name="Facturacion" Relationship="Self.FK_idEstudiante1" FromRole="Persona" ToRole="Facturacion" />
+          <NavigationProperty Name="GestiondeCursos" Relationship="Self.FK_IDprofesor" FromRole="Persona" ToRole="GestiondeCursos" />
+          <NavigationProperty Name="GestionDePagos" Relationship="Self.FK_idPersona4" FromRole="Persona" ToRole="GestionDePagos" />
+          <NavigationProperty Name="Matricula" Relationship="Self.FK_IdEstudiante" FromRole="Persona" ToRole="Matricula" />
+          <NavigationProperty Name="NotadeCredito" Relationship="Self.FK_idEstudiante10" FromRole="Persona" ToRole="NotadeCredito" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario1" FromRole="Persona" ToRole="Usuario" />
+          <NavigationProperty Name="TipodeIdentificacion" Relationship="Self.FK_Usuario2" FromRole="Persona" ToRole="TipodeIdentificacion" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="IDrol" />
+          </Key>
+          <Property Name="IDrol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="fechaModifica" Type="DateTime" Precision="0" />
+          <Property Name="usuarioModifica" Type="Int32" />
+          <NavigationProperty Name="Permiso" Relationship="Self.FK_idRol1" FromRole="Rol" ToRole="Permiso" />
+        </EntityType>
+        <EntityType Name="TipodeIdentificacion">
+          <Key>
+            <PropertyRef Name="ID_Identificacion" />
+          </Key>
+          <Property Name="ID_Identificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIPO_IDENTIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Usuario2" FromRole="TipodeIdentificacion" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="TIPOPAGO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TIPODEPAGO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Facturacion" Relationship="Self.FK_TipoPago" FromRole="TIPOPAGO" ToRole="Facturacion" />
+          <NavigationProperty Name="NotadeCredito" Relationship="Self.FK_TipoPago1" FromRole="TIPOPAGO" ToRole="NotadeCredito" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDusuario" />
+          </Key>
+          <Property Name="IDusuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="fechaModifica" Type="DateTime" Precision="0" />
+          <Property Name="usuarioModifica" Type="Int32" />
+          <Property Name="Indicador_Activo" Type="Boolean" />
+          <NavigationProperty Name="Permiso" Relationship="Self.FK_idUsuario0" FromRole="Usuario" ToRole="Permiso" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Usuario1" FromRole="Usuario" ToRole="Persona" />
+        </EntityType>
+        <Association Name="FK_IDaula">
+          <End Role="Aula" Type="Self.Aula" Multiplicity="1" />
+          <End Role="GestiondeCursos" Type="Self.GestiondeCursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aula">
+              <PropertyRef Name="IDaula" />
+            </Principal>
+            <Dependent Role="GestiondeCursos">
+              <PropertyRef Name="IDaula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDcurso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+          <End Role="GestiondeCursos" Type="Self.GestiondeCursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="IDcurso" />
+            </Principal>
+            <Dependent Role="GestiondeCursos">
+              <PropertyRef Name="IDcurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDcursoN">
+          <End Role="Nivel" Type="Self.Nivel" Multiplicity="1" />
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nivel">
+              <PropertyRef Name="Id_Nivel" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="Id_Nivel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GestiondeCursos">
+          <End Role="GestiondeCursos" Type="Self.GestiondeCursos" Multiplicity="1" />
+          <End Role="CursoporMatricula" Type="Self.CursoporMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GestiondeCursos">
+              <PropertyRef Name="IDGestiondeCursos" />
+            </Principal>
+            <Dependent Role="CursoporMatricula">
+              <PropertyRef Name="GestiondeCursos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdMatricula">
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="1" />
+          <End Role="CursoporMatricula" Type="Self.CursoporMatricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matricula">
+              <PropertyRef Name="IDmatricula" />
+            </Principal>
+            <Dependent Role="CursoporMatricula">
+              <PropertyRef Name="IdMatricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura">
+          <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="0..1" />
+          <End Role="NotadeCredito" Type="Self.NotadeCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facturacion">
+              <PropertyRef Name="IDfactura" />
+            </Principal>
+            <Dependent Role="NotadeCredito">
+              <PropertyRef Name="IDfactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idEstudiante1">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDpersona" />
+            </Principal>
+            <Dependent Role="Facturacion">
+              <PropertyRef Name="idEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdFactura">
+          <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="1" />
+          <End Role="GestionDePagos" Type="Self.GestionDePagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facturacion">
+              <PropertyRef Name="IDfactura" />
+            </Principal>
+            <Dependent Role="GestionDePagos">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdMatricula2">
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="1" />
+          <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matricula">
+              <PropertyRef Name="IDmatricula" />
+            </Principal>
+            <Dependent Role="Facturacion">
+              <PropertyRef Name="IdMatricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoPago">
+          <End Role="TIPOPAGO" Type="Self.TIPOPAGO" Multiplicity="0..1" />
+          <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOPAGO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Facturacion">
+              <PropertyRef Name="TipodePago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDhorario">
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="GestiondeCursos" Type="Self.GestiondeCursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="IDhorario" />
+            </Principal>
+            <Dependent Role="GestiondeCursos">
+              <PropertyRef Name="IDhorario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDprofesor">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="GestiondeCursos" Type="Self.GestiondeCursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDpersona" />
+            </Principal>
+            <Dependent Role="GestiondeCursos">
+              <PropertyRef Name="IDprofesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPersona4">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="GestionDePagos" Type="Self.GestionDePagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDpersona" />
+            </Principal>
+            <Dependent Role="GestionDePagos">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdEstudiante">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDpersona" />
+            </Principal>
+            <Dependent Role="Matricula">
+              <PropertyRef Name="IdEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IdMatricula20">
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="1" />
+          <End Role="NotadeCredito" Type="Self.NotadeCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matricula">
+              <PropertyRef Name="IDmatricula" />
+            </Principal>
+            <Dependent Role="NotadeCredito">
+              <PropertyRef Name="IdMatricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idEstudiante10">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="NotadeCredito" Type="Self.NotadeCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDpersona" />
+            </Principal>
+            <Dependent Role="NotadeCredito">
+              <PropertyRef Name="idEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipoPago1">
+          <End Role="TIPOPAGO" Type="Self.TIPOPAGO" Multiplicity="0..1" />
+          <End Role="NotadeCredito" Type="Self.NotadeCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOPAGO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NotadeCredito">
+              <PropertyRef Name="TipodePago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idRol1">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="IDrol" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idUsuario0">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDusuario" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDusuario" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario2">
+          <End Role="TipodeIdentificacion" Type="Self.TipodeIdentificacion" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipodeIdentificacion">
+              <PropertyRef Name="ID_Identificacion" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="tipo_identificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_OASYS" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aula" EntityType="Self.Aula" />
+          <EntitySet Name="Curso" EntityType="Self.Curso" />
+          <EntitySet Name="CursoporMatricula" EntityType="Self.CursoporMatricula" />
+          <EntitySet Name="Facturacion" EntityType="Self.Facturacion" />
+          <EntitySet Name="GestiondeCursos" EntityType="Self.GestiondeCursos" />
+          <EntitySet Name="GestionDePagos" EntityType="Self.GestionDePagos" />
+          <EntitySet Name="Horario" EntityType="Self.Horario" />
+          <EntitySet Name="Matricula" EntityType="Self.Matricula" />
+          <EntitySet Name="Nivel" EntityType="Self.Nivel" />
+          <EntitySet Name="NotadeCredito" EntityType="Self.NotadeCredito" />
+          <EntitySet Name="Noticias" EntityType="Self.Noticias" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="TipodeIdentificacion" EntityType="Self.TipodeIdentificacion" />
+          <EntitySet Name="TIPOPAGO" EntityType="Self.TIPOPAGO" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_IDaula" Association="Self.FK_IDaula">
+            <End Role="Aula" EntitySet="Aula" />
+            <End Role="GestiondeCursos" EntitySet="GestiondeCursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDcurso" Association="Self.FK_IDcurso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="GestiondeCursos" EntitySet="GestiondeCursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDcursoN" Association="Self.FK_IDcursoN">
+            <End Role="Nivel" EntitySet="Nivel" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GestiondeCursos" Association="Self.FK_GestiondeCursos">
+            <End Role="GestiondeCursos" EntitySet="GestiondeCursos" />
+            <End Role="CursoporMatricula" EntitySet="CursoporMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdMatricula" Association="Self.FK_IdMatricula">
+            <End Role="Matricula" EntitySet="Matricula" />
+            <End Role="CursoporMatricula" EntitySet="CursoporMatricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura" Association="Self.FK_Factura">
+            <End Role="Facturacion" EntitySet="Facturacion" />
+            <End Role="NotadeCredito" EntitySet="NotadeCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idEstudiante1" Association="Self.FK_idEstudiante1">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Facturacion" EntitySet="Facturacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdFactura" Association="Self.FK_IdFactura">
+            <End Role="Facturacion" EntitySet="Facturacion" />
+            <End Role="GestionDePagos" EntitySet="GestionDePagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdMatricula2" Association="Self.FK_IdMatricula2">
+            <End Role="Matricula" EntitySet="Matricula" />
+            <End Role="Facturacion" EntitySet="Facturacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoPago" Association="Self.FK_TipoPago">
+            <End Role="TIPOPAGO" EntitySet="TIPOPAGO" />
+            <End Role="Facturacion" EntitySet="Facturacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDhorario" Association="Self.FK_IDhorario">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="GestiondeCursos" EntitySet="GestiondeCursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDprofesor" Association="Self.FK_IDprofesor">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="GestiondeCursos" EntitySet="GestiondeCursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPersona4" Association="Self.FK_idPersona4">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="GestionDePagos" EntitySet="GestionDePagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdEstudiante" Association="Self.FK_IdEstudiante">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Matricula" EntitySet="Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IdMatricula20" Association="Self.FK_IdMatricula20">
+            <End Role="Matricula" EntitySet="Matricula" />
+            <End Role="NotadeCredito" EntitySet="NotadeCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idEstudiante10" Association="Self.FK_idEstudiante10">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="NotadeCredito" EntitySet="NotadeCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipoPago1" Association="Self.FK_TipoPago1">
+            <End Role="TIPOPAGO" EntitySet="TIPOPAGO" />
+            <End Role="NotadeCredito" EntitySet="NotadeCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idRol1" Association="Self.FK_idRol1">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idUsuario0" Association="Self.FK_idUsuario0">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario1" Association="Self.FK_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario2" Association="Self.FK_Usuario2">
+            <End Role="TipodeIdentificacion" EntitySet="TipodeIdentificacion" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="View_Facturas" EntityType="BD_OASYSModel.View_Facturas" />
+          <EntitySet Name="View_Morosos" EntityType="BD_OASYSModel.View_Morosos" />
+          <EntitySet Name="View_FacturaDescripcion" EntityType="BD_OASYSModel.View_FacturaDescripcion" />
+        </EntityContainer>
+        <EntityType Name="View_Facturas">
+          <Key>
+            <PropertyRef Name="IDfactura" />
+            <PropertyRef Name="idEstudiante" />
+            <PropertyRef Name="cedula" />
+            <PropertyRef Name="IdMatricula" />
+            <PropertyRef Name="fechaEmision" />
+            <PropertyRef Name="cantidadCursos" />
+            <PropertyRef Name="total" />
+          </Key>
+          <Property Name="IDfactura" Type="Int32" Nullable="false" />
+          <Property Name="idEstudiante" Type="Int32" Nullable="false" />
+          <Property Name="cedula" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdMatricula" Type="Int32" Nullable="false" />
+          <Property Name="fechaEmision" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cantidadCursos" Type="Int32" Nullable="false" />
+          <Property Name="subtotal" Type="Double" Nullable="false" />
+          <Property Name="total" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_Morosos">
+          <Key>
+            <PropertyRef Name="idEstudiante" />
+            <PropertyRef Name="cedula" />
+            <PropertyRef Name="correo" />
+          </Key>
+          <Property Name="Ultima_Factura" Type="Int32" Nullable="false" />
+          <Property Name="idEstudiante" Type="Int32" Nullable="false" />
+          <Property Name="cedula" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Ultima_Fecha" Type="DateTime" Precision="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_FacturaDescripcion">
+          <Key>
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="precio" />
+            <PropertyRef Name="IDfactura" />
+            <PropertyRef Name="IDmatricula" />
+            <PropertyRef Name="IdEstudiante" />
+          </Key>
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IDfactura" Type="Int32" Nullable="false" />
+          <Property Name="IDmatricula" Type="Int32" Nullable="false" />
+          <Property Name="IdEstudiante" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_OASYSModelStoreContainer" CdmEntityContainer="BD_OASYS">
+          <EntitySetMapping Name="Aula">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Aula">
+              <MappingFragment StoreEntitySet="Aula">
+                <ScalarProperty Name="IDaula" ColumnName="IDaula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="indicador_activo" ColumnName="indicador_activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curso">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Curso">
+              <MappingFragment StoreEntitySet="Curso">
+                <ScalarProperty Name="IDcurso" ColumnName="IDcurso" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+                <ScalarProperty Name="Id_Nivel" ColumnName="Id_Nivel" />
+                <ScalarProperty Name="Indicador_Activo" ColumnName="Indicador_Activo" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CursoporMatricula">
+            <EntityTypeMapping TypeName="BD_OASYSModel.CursoporMatricula">
+              <MappingFragment StoreEntitySet="CursoporMatricula">
+                <ScalarProperty Name="IDCursosporM" ColumnName="IDCursosporM" />
+                <ScalarProperty Name="IdMatricula" ColumnName="IdMatricula" />
+                <ScalarProperty Name="GestiondeCursos" ColumnName="GestiondeCursos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facturacion">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Facturacion">
+              <MappingFragment StoreEntitySet="Facturacion">
+                <ScalarProperty Name="IDfactura" ColumnName="IDfactura" />
+                <ScalarProperty Name="claveNumerica" ColumnName="claveNumerica" />
+                <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+                <ScalarProperty Name="IdMatricula" ColumnName="IdMatricula" />
+                <ScalarProperty Name="fechaEmision" ColumnName="fechaEmision" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="cantidadCursos" ColumnName="cantidadCursos" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="TipodePago" ColumnName="TipodePago" />
+                <ScalarProperty Name="Maestro" ColumnName="Maestro" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="Indicador_Activo" ColumnName="Indicador_Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GestiondeCursos">
+            <EntityTypeMapping TypeName="BD_OASYSModel.GestiondeCursos">
+              <MappingFragment StoreEntitySet="GestiondeCursos">
+                <ScalarProperty Name="IDGestiondeCursos" ColumnName="IDGestiondeCursos" />
+                <ScalarProperty Name="IDcurso" ColumnName="IDcurso" />
+                <ScalarProperty Name="IDaula" ColumnName="IDaula" />
+                <ScalarProperty Name="IDhorario" ColumnName="IDhorario" />
+                <ScalarProperty Name="IDprofesor" ColumnName="IDprofesor" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+                <ScalarProperty Name="Fechacrea" ColumnName="Fechacrea" />
+                <ScalarProperty Name="Indicador_Activo" ColumnName="Indicador_Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GestionDePagos">
+            <EntityTypeMapping TypeName="BD_OASYSModel.GestionDePagos">
+              <MappingFragment StoreEntitySet="GestionDePagos">
+                <ScalarProperty Name="IDGESTION" ColumnName="IDGESTION" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Horario">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Horario">
+              <MappingFragment StoreEntitySet="Horario">
+                <ScalarProperty Name="IDhorario" ColumnName="IDhorario" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Indicador_Activo" ColumnName="Indicador_Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matricula">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Matricula">
+              <MappingFragment StoreEntitySet="Matricula">
+                <ScalarProperty Name="IDmatricula" ColumnName="IDmatricula" />
+                <ScalarProperty Name="IdEstudiante" ColumnName="IdEstudiante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nivel">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Nivel">
+              <MappingFragment StoreEntitySet="Nivel">
+                <ScalarProperty Name="Id_Nivel" ColumnName="Id_Nivel" />
+                <ScalarProperty Name="nivel1" ColumnName="nivel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotadeCredito">
+            <EntityTypeMapping TypeName="BD_OASYSModel.NotadeCredito">
+              <MappingFragment StoreEntitySet="NotadeCredito">
+                <ScalarProperty Name="IDNOTACREDITO" ColumnName="IDNOTACREDITO" />
+                <ScalarProperty Name="IDfactura" ColumnName="IDfactura" />
+                <ScalarProperty Name="claveNumerica" ColumnName="claveNumerica" />
+                <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+                <ScalarProperty Name="IdMatricula" ColumnName="IdMatricula" />
+                <ScalarProperty Name="fechaEmision" ColumnName="fechaEmision" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="cantidadCursos" ColumnName="cantidadCursos" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="TipodePago" ColumnName="TipodePago" />
+                <ScalarProperty Name="Maestro" ColumnName="Maestro" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="Indicador_Activo" ColumnName="Indicador_Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Noticias">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Noticias">
+              <MappingFragment StoreEntitySet="Noticias">
+                <ScalarProperty Name="IDNoticia" ColumnName="IDNoticia" />
+                <ScalarProperty Name="texto" ColumnName="texto" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Indicador_Activo" ColumnName="Indicador_Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permiso">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Permiso">
+              <MappingFragment StoreEntitySet="Permiso">
+                <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="IDpersona" ColumnName="IDpersona" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="tipo_identificacion" ColumnName="tipo_identificacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+                <ScalarProperty Name="Indicador_Activo" ColumnName="Indicador_Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="IDrol" ColumnName="IDrol" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipodeIdentificacion">
+            <EntityTypeMapping TypeName="BD_OASYSModel.TipodeIdentificacion">
+              <MappingFragment StoreEntitySet="TipodeIdentificacion">
+                <ScalarProperty Name="ID_Identificacion" ColumnName="ID_Identificacion" />
+                <ScalarProperty Name="TIPO_IDENTIFICACION" ColumnName="TIPO_IDENTIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOPAGO">
+            <EntityTypeMapping TypeName="BD_OASYSModel.TIPOPAGO">
+              <MappingFragment StoreEntitySet="TIPOPAGO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TIPODEPAGO" ColumnName="TIPODEPAGO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="BD_OASYSModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IDusuario" ColumnName="IDusuario" />
+                <ScalarProperty Name="usuario1" ColumnName="usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+                <ScalarProperty Name="Indicador_Activo" ColumnName="Indicador_Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Facturas">
+            <EntityTypeMapping TypeName="BD_OASYSModel.View_Facturas">
+              <MappingFragment StoreEntitySet="View_Facturas">
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="cantidadCursos" ColumnName="cantidadCursos" />
+                <ScalarProperty Name="fechaEmision" ColumnName="fechaEmision" />
+                <ScalarProperty Name="IdMatricula" ColumnName="IdMatricula" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+                <ScalarProperty Name="IDfactura" ColumnName="IDfactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Morosos">
+            <EntityTypeMapping TypeName="BD_OASYSModel.View_Morosos">
+              <MappingFragment StoreEntitySet="View_Morosos">
+                <ScalarProperty Name="Ultima_Fecha" ColumnName="Ultima Fecha" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+                <ScalarProperty Name="Ultima_Factura" ColumnName="Ultima Factura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_FacturaDescripcion">
+            <EntityTypeMapping TypeName="BD_OASYSModel.View_FacturaDescripcion">
+              <MappingFragment StoreEntitySet="View_FacturaDescripcion">
+                <ScalarProperty Name="IdEstudiante" ColumnName="IdEstudiante" />
+                <ScalarProperty Name="IDmatricula" ColumnName="IDmatricula" />
+                <ScalarProperty Name="IDfactura" ColumnName="IDfactura" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

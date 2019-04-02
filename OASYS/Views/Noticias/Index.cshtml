@@ -1,0 +1,60 @@
+﻿@model IEnumerable<OASYS.Models.Noticias>
+
+@{
+    ViewBag.Title = "Index";
+    Interfaz f = new Interfaz();
+    string laya = f.ROL((int)Session["Rol"]);
+    Layout = laya;
+}
+
+
+<div class="row mb-3">
+    <div class="col-12">
+        <a class="nav-link" href="@Url.Action("Create", "Noticias")">
+            <img src="~/Assets/Icons/icons8-add-48.png" /> Crear Noticia
+        </a>
+    </div>
+</div>
+<div class="table-responsive table-striped">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Noticia
+                </th>
+                <th>
+                    Estado Actual
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                string Activo;
+                if (item.Indicador_Activo == true)
+                {
+                    Activo = "Activo";
+                }
+                else
+                {
+                    Activo = "Inactivo";
+                }
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.texto)
+                    </td>               
+                    <td>
+                        @Activo
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn" type="submit">
+                                <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-edit-file-48.png"> @Html.ActionLink("Editar", "Edit", new { id = item.IDNoticia })
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </thead>
+    </table>
+</div>

@@ -1,0 +1,145 @@
+﻿@model IEnumerable<OASYS.Models.Persona>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+
+    <div class="table-responsive table-striped">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Cédula
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Primer Apellido
+                    </th>
+                    <th>
+                        Segundo Apellido
+                    </th>
+                    <th>
+                        Nombre Usuario
+                    </th>
+                    <th>
+                        Estado Actual
+                    </th>
+                    <th></th>
+                </tr>
+
+                @{
+                    string btnDetalles = "";
+                    string mdlDetalles = "";
+
+                    foreach (var item in Model)
+                    {
+                        btnDetalles = "btnDetalles_" + item.IDpersona;
+                        mdlDetalles = "mdlDetalles_" + item.IDpersona;
+                        string nombreCompleto = item.nombre + " " + item.apellido1 + " " + item.apellido2;
+                        string Activo;
+                        string rol;
+                        if (item.idRol == 1)
+                        {
+                            rol = "Administrador";
+                        }
+                        else
+                        {
+                            if (item.idRol == 2)
+                            {
+                                rol = "Colaborador";
+                            }
+                            else
+                            {
+                                if (item.idRol == 3)
+                                {
+                                    rol = "Profesor";
+                                }
+                                else
+                                {
+                                    rol = "Estudiante";
+                                }
+                            }
+                        }
+                        if (item.Indicador_Activo == true)
+                        {
+                            Activo = "Activo";
+                        }
+                        else
+                        {
+                            Activo = "Inactivo";
+                        }
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cedula)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.apellido1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.apellido2)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Usuario.usuario1)
+                            </td>
+                            <td>
+                                @Activo
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <div class="btn-group">
+                                        <button class="btn" type="submit">
+                                            <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-edit-file-48.png"> @Html.ActionLink("Editar", "EditPersona", new { id = item.IDpersona })
+                                        </button>
+                                    </div>
+                                    <button class="btn" data-toggle="modal" data-target="#@mdlDetalles">
+                                        <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-view-details-48.png"> Detalles
+                                    </button>
+                                    <div class="modal fade" id="@mdlDetalles" tabindex="-1" role="dialog" aria-labelledby="fm-modal2" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-secondary">
+                                                    <button class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <label>Cédula: @item.cedula </label>
+                                                    <br />
+                                                    <label>Tipo Identificación: @item.TipodeIdentificacion.TIPO_IDENTIFICACION </label>
+                                                    <br />
+                                                    <label>Nombre: @nombreCompleto </label>
+                                                    <br />
+                                                    <label>Dirección: @item.direccion </label>
+                                                    <br />
+                                                    <label>Correo: @item.correo </label>
+                                                    <br />
+                                                    <label>Fecha nacimiento: @item.fechaNacimiento </label>
+                                                    <br />
+                                                    <label>Usuario: @item.Usuario.usuario1 </label>
+                                                    <br />
+                                                    <label>Rol: @rol </label>
+                                                    <br />
+                                                    <label>Estado Actual: @Activo </label>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cerrar </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </thead>
+        </table>
+    </div>

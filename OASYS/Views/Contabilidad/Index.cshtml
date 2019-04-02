@@ -1,0 +1,134 @@
+﻿@model IEnumerable<OASYS.Models.Facturacion>
+@using OASYS.Controllers
+
+@{
+    ViewBag.Title = "Contabilidad";
+    Interfaz inter = new Interfaz();
+    string laya = inter.ROL((int)Session["Rol"]);
+    Layout = laya;
+}
+
+<h2>Contabilidad</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            Numero de Factura
+        </th>
+
+        <th>
+            Fecha
+        </th>
+
+        <th>
+            Cedula
+        </th>
+
+        <th>
+            Nombre
+        </th>
+
+        <th>
+            Id Matricula
+        </th>
+
+        <th>
+            Total
+        </th>
+
+        <th>
+            Estado
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IDfactura)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaEmision)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Persona.cedula)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Matricula.IDmatricula)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+
+            <td>
+
+
+                @{
+                    ContabilidadController a = new ContabilidadController();
+
+                    bool estado = a.ESTADO(item.IDfactura);
+
+                }
+
+                @if (estado)
+                {
+
+                    <div class="btn-group">
+                        <button class="btn" type="submit">
+                            <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-delete-bin-48.png"> @Html.ActionLink("Delete", "Delete", new { id = item.IDfactura })
+                        </button>
+                    </div>
+
+
+                }
+                else
+                {
+                    <div class="btn-group">
+                        <button class="btn" type="submit">
+                            <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-unavailable-48.png" />
+                        </button>
+                    </div>
+
+                }
+
+            </td>
+
+
+
+            <td>
+
+                @if (estado)
+                {
+
+                    @Html.ActionLink("IMPRIMIR FACTURA", "Edit", new { id = item.IDfactura })
+
+
+                }
+                else
+                {
+                    @Html.ActionLink("IMPRIMIR FACTURA", "Edit", new { id = item.IDfactura })
+                    <br />
+                    @Html.ActionLink("IMPRIMIR NOTA CREDITO", "Edit", new { id = item.IDfactura })
+
+                }
+
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+

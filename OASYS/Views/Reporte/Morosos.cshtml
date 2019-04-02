@@ -1,0 +1,74 @@
+﻿@model IEnumerable<OASYS.Models.View_Morosos>
+
+@{
+    ViewBag.Title = "Morosos";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>Morosos</h2>
+
+
+@if (Model.Count() > 0)
+{
+    @Html.ActionLink("Descargar PDF", "MorososDescargar", "Reporte", htmlAttributes: new { @class = "btn btn-primary col-2 align-self-end  float-right" })
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ultima_Factura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idEstudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ultima_Fecha)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ultima_Factura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idEstudiante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ultima_Fecha)
+            </td>
+        </tr>
+    }
+
+</table>

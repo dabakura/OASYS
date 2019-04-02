@@ -1,0 +1,54 @@
+﻿@model IEnumerable<OASYS.Models.Usuario>
+@{
+    ViewBag.Title = "Cambio de Contraseña";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<img src="~/Assets/img/logo.png" />
+
+<h2>Ingrese su nueva contraseña por favor.</h2>
+<div>
+    <h4 style="color: red">@ViewBag.Mensaje</h4>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            <div class="form-horizontal">
+                @using (Html.BeginForm("IniciarSesion", "CambioContraseña", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <br />
+                        <label class="col-md-2 control-label" for="Password">Contraseña</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line password input-validation-error" data-val="true" data-val-length-max="50" data-val-length-min="8" data-val-required="Digite su contraseña." id="contraseña1" name="contraseña1" type="password" value="" aria-describedby="contraseña1-error" aria-invalid="true">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="Password">Confirme su Contraseña</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line password input-validation-error" data-val="true" data-val-length-max="50" data-val-length-min="8" data-val-required="Digite su contraseña." id="contraseña2" name="contraseña2" type="password" value="" aria-describedby="contraseña2-error" aria-invalid="true">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Iniciar sesión" class="btn btn-default" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</div>
+@*@Html.Password("contrasena2", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(m => contrasenab, "", new { @class = "text-danger" })*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

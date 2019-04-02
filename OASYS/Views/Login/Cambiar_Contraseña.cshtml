@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Cambiar_Contraseña";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cambio de Contraseña</h2>
+<div class="row">
+    <div class="col-md-8">
+        >
+        <h3>Digite el Correo de su Usuario</h3>
+
+        Correo: @using (Html.BeginForm("Confirmacion_Cambio", "Login"))
+        {
+            
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-4">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <input type="text" id="ss" name="correo" value="" class="form-control" />
+                                    </th>
+                                    <th>
+                                        <button class="btn btn-primary" type="submit">
+                                            <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-save-48.png">
+                                        </button>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

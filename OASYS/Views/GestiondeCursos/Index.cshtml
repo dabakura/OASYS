@@ -1,0 +1,79 @@
+﻿@model IEnumerable<OASYS.Models.GestiondeCursos>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Title = "Editar Aula";
+    Interfaz a = new Interfaz();
+    string laya = a.ROL((int)Session["Rol"]);
+    Layout = laya;
+}
+
+<div class="row mb-3">
+    <div class="col-12">
+        <a class="nav-link" href="@Url.Action("Create", "GestiondeCursos")">
+            <img src="~/Assets/Icons/icons8-add-48.png" /> Gestionar Curso
+        </a>
+    </div>
+</div>
+<div class="table-responsive table-striped">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Aula
+                </th>
+                <th>
+                    Curso
+                </th>
+                <th>
+                    Horario
+                </th>
+                <th>
+                    Profesor
+                </th>
+                <th>
+                    Estado Actual
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                string Activo;
+                if (item.Indicador_Activo == true)
+                {
+                    Activo = "Activo";
+                }
+                else
+                {
+                    Activo = "Inactivo";
+                }
+                string nombre = item.Persona.nombre + " " + item.Persona.apellido1;
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aula.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Curso.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Horario.dia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => nombre)
+                    </td>
+                    <td>
+                        @Activo
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn" type="submit">
+                                <img style="width:20px; height:20px;" src="~/Assets/Icons/icons8-edit-file-48.png"> @Html.ActionLink("Editar", "Edit", new { id = item.IDGestiondeCursos })
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </thead>
+    </table>
+</div>

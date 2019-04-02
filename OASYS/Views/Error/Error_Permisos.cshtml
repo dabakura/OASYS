@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    if (Session["IdUsuario"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+    int Rol = (int)Session["Rol"];
+    if (Rol == 1)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        if (Rol==2)
+        {
+            Layout = "~/Views/Shared/_Layout_Colab.cshtml";
+        }
+        else
+        {
+            if (Rol==3)
+            {
+                Layout = "~/Views/Shared/_Layout_Prof.cshtml";
+            }
+            else
+            {
+                Layout = "~/Views/Shared/_Layout_Estud.cshtml";
+            }
+
+        }
+    }
+
+}
+
+<h2>Permisos Insuficientes</h2>
+
+
+<div class="alert alert-danger" role="alert">
+    <strong>Acceso Denegado</strong> No cuenta con los permisos para acceder a la página solicitada!
+</div>
