@@ -241,6 +241,12 @@
     </Compile>
     <Compile Include="Permisos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\ReportNotaCredito.cs">
+      <DependentUpon>ReportNotaCredito.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Report\ReportFacturaEliminada.cs">
       <DependentUpon>ReportFacturaEliminada.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2398,6 +2404,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Report\ReportNotaCredito.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportNotaCredito.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\ReportFacturaEliminada.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReportFacturaEliminada.cs</LastGenOutput>

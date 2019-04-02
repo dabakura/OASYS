@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using OASYS.Models;
 
@@ -169,14 +170,15 @@ namespace OASYS.Controllers
                                                         Encoding.UTF8,
                                                         MediaTypeNames.Text.Plain);
             string mediaType = MediaTypeNames.Image.Jpeg;
-            //LinkedResource img = new LinkedResource(@"C:\Users\Andrés Zamora\Desktop\O.A.S.Y.S\OASYS\OASYS\Assets\img\logo.png", mediaType);
-            // Make sure you set all these values!!!
-            //img.ContentId = "EmbeddedContent_1";
-            //img.ContentType.MediaType = mediaType;
-            //img.TransferEncoding = TransferEncoding.Base64;
-            //img.ContentType.Name = img.ContentId;
-            //img.ContentLink = new Uri("cid:" + img.ContentId);
-            //htmlView.LinkedResources.Add(img);
+            string ruta = HostingEnvironment.ApplicationPhysicalPath + "/Assets/img/logo.png";
+            LinkedResource img = new LinkedResource(ruta, mediaType);
+            //Make sure you set all these values!!!
+            img.ContentId = "EmbeddedContent_1";
+            img.ContentType.MediaType = mediaType;
+            img.TransferEncoding = TransferEncoding.Base64;
+            img.ContentType.Name = img.ContentId;
+            img.ContentLink = new Uri("cid:" + img.ContentId);
+            htmlView.LinkedResources.Add(img);
             //////////////////////////////////////////////////////////////
 
             msg.AlternateViews.Add(plainView);

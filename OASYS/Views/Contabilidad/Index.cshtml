@@ -112,20 +112,16 @@
                 @if (estado)
                 {
 
-                    @Html.ActionLink("IMPRIMIR FACTURA", "Edit", new { id = item.IDfactura })
-
+                    @Html.ActionLink("IMPRIMIR FACTURA", "ImprimirFactura", new { IdMatrucula = item.IdMatricula, IdEstudiante = item.idEstudiante })
 
                 }
                 else
                 {
-                    @Html.ActionLink("IMPRIMIR FACTURA", "Edit", new { id = item.IDfactura })
+                    @Html.ActionLink("IMPRIMIR FACTURA", "ImprimirFacturaEliminada", new { IdMatrucula = item.IdMatricula, IdEstudiante = item.idEstudiante })
                     <br />
-                    @Html.ActionLink("IMPRIMIR NOTA CREDITO", "Edit", new { id = item.IDfactura })
+                    @Html.ActionLink("IMPRIMIR NOTA CREDITO", "ImprimirNotacredito", new { IdMatrucula = item.IdMatricula, IdEstudiante = item.idEstudiante })
 
                 }
-
-
-
             </td>
         </tr>
     }

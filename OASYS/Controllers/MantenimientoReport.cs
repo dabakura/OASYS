@@ -20,6 +20,7 @@ namespace OASYS.Controllers
 
         private List<View_Morosos> ListaMorosos { get; set; }
 
+        public String Mensaje { get; set; }
         public Borrado GetBorrado { get; set; }
 
         private DateTime? Desde { get; set; }
@@ -149,6 +150,36 @@ namespace OASYS.Controllers
             report.SetParameterValue("telefono", factura.telefono);
             report.SetParameterValue("correo", factura.correo);
             report.SetParameterValue("clavenumerica", factura.clavenumerica);
+            return report.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        }
+
+        internal Stream NotaCreditoPDF(int matricula)
+        {
+            ReportDocument report = new ReportDocument();
+            report.Load(Path.Combine(HttpContext.Current.Server.MapPath("~/Report/ReportNotaCredito.rpt")));
+            var detalles = (from d in db.View_FacturaDescripcion.ToList()
+                            where (d.IDmatricula == matricula)
+                            select d).ToList();
+            var notacredito = (from f in db.NotadeCredito
+                           where (f.IdMatricula == matricula)
+                           select new Parametros
+                           {
+                               idfactura = f.IDNOTACREDITO + "",
+                               cliente = f.Persona.nombre + " " + f.Persona.apellido1 + " " + f.Persona.apellido2,
+                               fecha = f.FechaRegistro.ToString(),
+                               cedula = f.Persona.cedula,
+                               telefono = f.telefono + "",
+                               correo = f.Persona.correo,
+                               clavenumerica = f.claveNumerica
+                           }).First();
+            report.SetDataSource(detalles);
+            report.SetParameterValue("idfactura", notacredito.idfactura);
+            report.SetParameterValue("cliente", notacredito.cliente);
+            report.SetParameterValue("fecha", notacredito.fecha);
+            report.SetParameterValue("cedula", notacredito.cedula);
+            report.SetParameterValue("telefono", notacredito.telefono);
+            report.SetParameterValue("correo", notacredito.correo);
+            report.SetParameterValue("clavenumerica", notacredito.clavenumerica);
             return report.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
         }
 

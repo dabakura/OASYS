@@ -6,7 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Mime;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using OASYS.Models;
 
@@ -54,8 +58,7 @@ namespace OASYS.Controllers
             Response.ClearHeaders();
             Stream stream = MantenimientoReport.Instance.FacturaPDF(matricula);
             stream.Seek(0, SeekOrigin.Begin);
-            string mensajes = "Factura Electronica" ;
-            correo(mensajes, idEstudiante, stream);
+            correo(MantenimientoReport.Instance.Mensaje, idEstudiante, stream);
             stream = MantenimientoReport.Instance.FacturaPDF(matricula);
             stream.Seek(0, SeekOrigin.Begin);
             return File(stream, "application/pdf", "Factura.pdf");
@@ -92,7 +95,7 @@ namespace OASYS.Controllers
                 facturacion.FechaRegistro = DateTime.Now;
 
                 db.Facturacion.Add(facturacion);
-                mensaje = mensaje +  "Clave Numerica: " + Clave + "\n Nombre:" + nombre + " " + apellido1 + " " + apellido2 + "\n Fecha: " + DateTime.Now + "\n Cantidad de cursos:" + 1 + "\n Total:" + Total;
+                MantenimientoReport.Instance.Mensaje = mensaje +  "Clave Numerica: " + Clave + "<br/>Nombre:" + nombre + " " + apellido1 + " " + apellido2 + "<br/>Fecha: " + DateTime.Now + "<br/>Cantidad de cursos:" + 1 + "<br/>Total:" + Total;
             }
             else
             {
@@ -120,11 +123,10 @@ namespace OASYS.Controllers
                 facturacion.total = Total;
                 facturacion.subtotal = Total;
                 db.Facturacion.Add(facturacion);
-      
-                mensaje = "Numero de factura: " + fac + "Clave Numerica: " + Clave + "\n Nombre:" + nombre + " " + apellido1 + " " + apellido2 + "\n Fecha: " + DateTime.Now + " \n Cantidad de cursos:" + 1 + "\n Total:" + Total;
+                MantenimientoReport.Instance.Mensaje = "Numero de factura: " + fac + "<br/>Clave Numerica: " + Clave + "<br/>Nombre:" + nombre + " " + apellido1 + " " + apellido2 + "<br/>Fecha: " + DateTime.Now + "<br/>Cantidad de cursos:" + 1 + "<br/>Total:" + Total;
             }
             db.SaveChanges();
-            correo(mensaje, idEstudiante, null);
+            //correo(mensaje, idEstudiante, null);
             return fac;
         }
 
@@ -134,21 +136,9 @@ namespace OASYS.Controllers
             ViewBag.TipoUsuario = "ADMIN";
 
             BD_OASYS db = new BD_OASYS();
-
-            //var consulta = (from Persona in db.Matricula
-            //                where Persona.IDmatricula == Id
-            //                select Persona.IdEstudiante).Single();
-
-
-            //int id_estudiante = Convert.ToInt32(consulta);
-
-
             var nombre = (from Persona in db.Persona
                           where Persona.IDpersona == Id
                           select Persona.nombre).Single();
-
-            //nombre = nombre;
-
             return nombre;
         }// string nombre
 
@@ -156,66 +146,24 @@ namespace OASYS.Controllers
         {
 
             BD_OASYS db = new BD_OASYS();
-
-
-            //var consulta = (from Persona in db.Matricula
-            //                where Persona.IDmatricula == Id
-            //                select Persona.IdEstudiante).Single();
-
-
-            //int id_estudiante = Convert.ToInt32(consulta);
-
-
             var nombre = (from Persona in db.Persona
                           where Persona.IDpersona == Id
                           select Persona.apellido1).Single();
-
-            //nombre = nombre;
-
             return nombre;
         }
         public String Apellido2(int Id)
         {
             BD_OASYS db = new BD_OASYS();
-
-
-            //var consulta = (from Persona in db.Matricula
-            //                where Persona.IDmatricula == Id
-            //                select Persona.IdEstudiante).Single();
-
-
-            //int id_estudiante = Convert.ToInt32(consulta);
-
-
             var nombre = (from Persona in db.Persona
                           where Persona.IDpersona == Id
                           select Persona.apellido2).Single();
-
-            //nombre = nombre;
-
             return nombre;
         }
 
         public int id_Estudiante(int Id)
         {
-            BD_OASYS db = new BD_OASYS();
-
-
-            //var consulta = (from Persona in db.Matricula
-            //                where Persona.IDmatricula == Id
-            //                select Persona.IdEstudiante).Single();
-
-
-            //int id_estudiante = Convert.ToInt32(consulta);
-
-            //id_estudiante = id_estudiante;
             return Id;
-
-
-
         }
-
-
 
 
         public void correo(String mensajes, int ID_Estudiante,Stream stream)
@@ -223,10 +171,48 @@ namespace OASYS.Controllers
 
             using (SmtpClient cliente = new SmtpClient("smtp.live.com", 587))
             {
+                string htmlMessage = @"<html>
+                         <body> <center>
+                         <img src='cid:EmbeddedContent_1' />
+                         <h2 style='color: orange'>Facturación Electronica</h2>
+                         <br>
+                         <h4>OASYS le envia la factura correspondiente a su matricula realisada</h4>
+                         <br>
+                         <b>" + mensajes + "</b>" +
+                         "</center></body>" +
+                         "</html>";
                 String correo = ObtenerCorreo(ID_Estudiante);
+                MailMessage mensaje = new MailMessage("oasyscontrasena@hotmail.com",
+                                                  correo);
+                // Create the HTML view
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString(
+                                                             htmlMessage,
+                                                             Encoding.UTF8,
+                                                             MediaTypeNames.Text.Html);
+                // Create a plain text message for client that don't support HTML
+                AlternateView plainView = AlternateView.CreateAlternateViewFromString(
+                                                            Regex.Replace(htmlMessage,
+                                                                          "<[^>]+?>",
+                                                                          string.Empty),
+                                                            Encoding.UTF8,
+                                                            MediaTypeNames.Text.Plain);
+                string mediaType = MediaTypeNames.Image.Jpeg;
+                string ruta = HostingEnvironment.ApplicationPhysicalPath + "/Assets/img/logo.png";
+                LinkedResource img = new LinkedResource(ruta, mediaType);
+                //Make sure you set all these values!!!
+                img.ContentId = "EmbeddedContent_1";
+                img.ContentType.MediaType = mediaType;
+                img.TransferEncoding = TransferEncoding.Base64;
+                img.ContentType.Name = img.ContentId;
+                img.ContentLink = new Uri("cid:" + img.ContentId);
+                htmlView.LinkedResources.Add(img);
+                mensaje.AlternateViews.Add(plainView);
+                mensaje.AlternateViews.Add(htmlView);
+                mensaje.IsBodyHtml = true;
+                mensaje.Subject = "OASYS - Facturación";
                 cliente.EnableSsl = true;
-                cliente.Credentials = new NetworkCredential("oasysfactura@hotmail.com", "analisis123");
-                MailMessage mensaje = new MailMessage("oasysfactura@hotmail.com", correo, "Factura Electronica - OASYS", mensajes);
+                cliente.Credentials = new NetworkCredential("oasyscontrasena@hotmail.com", "analisis123");
+
                 if(stream!=null)
                     mensaje.Attachments.Add(new Attachment(stream, "Factura.pdf"));
                 try
@@ -237,7 +223,6 @@ namespace OASYS.Controllers
                 catch (Exception ex)
                 {
                     Convert.ToString(ex);
-                    correo = correo;
                 }
             }
         }
